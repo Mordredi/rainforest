@@ -1,4 +1,4 @@
-class ProductsController < ApplicaationController
+class ProductsController < ApplicationController
 
   def index
     @products = Product.all
@@ -6,6 +6,7 @@ class ProductsController < ApplicaationController
 
   def show
     @product = Product.find(params[:id])
+  end
 
   def new
     @product = Product.new
