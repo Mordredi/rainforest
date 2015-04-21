@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :products, :users
+  resources :users
   resources :sessions, :only => [:create]
+  resources :products do
+    resources :reviews, :only => [:show, :create, :destroy]
+  end
   root 'products#index'
   get '/login' => 'sessions#new'
   delete '/logout' => "sessions#destroy"
