@@ -7,14 +7,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if current_user %>
-    <p>
-    <%= current_user.email %> <%= link_to "Log Out", logout_path(current_user), :method => :delete %>
-    </p>
-  <% else %>
-    <p><%= link_to "Log In", login_path %> or <%= link_to "Sign Up", new_user_path %></p>
+  <% if flash[:notice] %>
+    <p class="flash notice"><%= flash[:notice] %></p>
+  <% elsif flash[:alert] %>
+    <p class="flash alert"><%= flash[:alert] %></p>
   <% end %>
-<%= yield %>
-
+  <header>
+    <div class="logo">
+      <%= link_to "Rainforest", root_path %>
+    </div>
+    <%= link_to "All Products", all_products_path %>
+  </header>
+  <main>
+  <section class="sidebar">
+    <% if current_user %>
+      <h4><%= current_user.first_name %> <%= current_user.last_name %></h4>
+      <ul>
+        <li><%= link_to "New Product", new_user_product_url(current_user) %></li>
+        <li><%= link_to "My Products", user_products_url(current_user) %></li>
+        <li><%= link_to "Log Out", logout_url(current_user), :method => :delete %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to "Log In", login_path %></li>
+        <li><%= link_to "Sign Up", new_user_path %></li>
+      </ul>
+    <% end %>
+  </section>
+  <article>
+    <%= yield %>
+  </article>
+  </main>
 </body>
 </html>

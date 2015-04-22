@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
 
+  before_action :ensure_logged_in, only: [:new, :create, :edit, :update, :destroy]
+
   def index
-    @products = Product.all
+    @user = current_user
+    @products = Product.where(user_id: @user)
   end
 
   def show
@@ -17,20 +20,22 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    if @product
-      @product.save
-      redirect_to products_path
+    @product = current_user.products.build(product_params)
+    @product.user = current_user
+    if @product.save
+      redirect_to user_products_path, :notice => "Product successfully created"
     else
       render 'new'
     end
   end
 
   def edit
+    @user = current_user
     @product = Product.find(params[:id])
   end
 
   def update
+    @user = current_user
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
       redirect_to product_path(@product)

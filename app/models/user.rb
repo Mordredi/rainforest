@@ -1,10 +1,19 @@
 class User < ActiveRecord::Base
-
   has_secure_password
-  validates :first_name, :last_name, :email, :password, :password_confirmation, presence: true
-
-  has_many :reviews
+  
   has_many :products
+  has_many :reviews
   has_many :products, :through => :reviews
+
+  before_create :ensure_lowercase_email
+
+  validates :first_name, :last_name, :email, :presence => true
+  validates :email, :uniqueness => true
+
+  private
+
+  def ensure_lowercase_email
+    self.email = email.downcase
+  end
 
 end
