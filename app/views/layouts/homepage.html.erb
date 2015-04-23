@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rainforest</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="homepage">
+  <% if flash[:notice] %>
+    <p class="flash notice"><%= flash[:notice] %></p>
+  <% elsif flash[:alert] %>
+    <p class="flash alert"><%= flash[:alert] %></p>
+  <% end %>
+  <header>
+    <h1>Rainforest</h1>
+    <p>A place to share and review products.</p>
+  </header>
+  <main>
+    <%= yield %>
+  </main>
+</body>
+</html>
