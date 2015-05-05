@@ -1,5 +1,5 @@
 $(document).on('ready page:load', function(){
-  $("#search-form").on('submit', function(e){
+  $("#search-form").on('keyup', function(e){
     e.preventDefault();
     var searchValue = $('#search').val();
     $.ajax({

@@ -1,6 +1,5 @@
 <%= form_tag products_path, :method => :get, :id => 'search-form' do %>
-  <%= search_field_tag :search, params[:search] %>
-  <%= button_tag "Search" %>
+  <%= search_field_tag :search, params[:search], :placeholder => 'Search...' %>
 <% end %>
 
 <div class="products">
