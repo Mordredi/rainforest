@@ -1,20 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :users do
-    resources :products
-  end
+  resources :users
 
-  resources :products, :only => [] do
+  resources :products do
     resources :reviews, :only => [:show, :create, :destroy]
   end
 
   resources :sessions, :only => [:create]
   root 'main#index'
-  get 'main/index'
-
-  get '/main/products' => 'main#products', :as => 'all_products' 
-  get '/products/:id' => 'main#show', :as => 'one_product'
-  get '/users/:id/reviews' => 'users#reviews', :as => 'user_reviews'
 
   get '/login' => 'sessions#new'
   delete '/logout' => "sessions#destroy"

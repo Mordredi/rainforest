@@ -3,8 +3,7 @@ class ProductsController < ApplicationController
   before_action :ensure_logged_in, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @user = current_user
-    @products = Product.where(user_id: @user)
+    @products = Product.all
   end
 
   def show

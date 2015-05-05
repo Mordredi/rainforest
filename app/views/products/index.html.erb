@@ -1,7 +1,3 @@
-<ul>
-<% @products.each do |product| %>
-  <li><%= link_to "#{product.name}", "/users/#{@user.id}/products/#{product.id}" %></li>
-  <li><%= product.description %></li>
-  <li><%= product.formatted_price %></li>
-<% end %>
-</ul>
+<div class="products">
+  <%= render @products %>
+</div>
