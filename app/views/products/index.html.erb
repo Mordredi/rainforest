@@ -1,3 +1,8 @@
+<%= form_tag products_path, :method => :get, :id => 'search-form' do %>
+  <%= search_field_tag :search, params[:search] %>
+  <%= button_tag "Search" %>
+<% end %>
+
 <div class="products">
   <%= render @products %>
 </div>
