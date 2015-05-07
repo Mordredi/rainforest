@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
   <% if flash[:notice] %>
@@ -13,22 +14,35 @@
     <p class="flash alert"><%= flash[:alert] %></p>
   <% end %>
   <header>
-    <div class="logo">
-      <%= link_to "Rainforest", root_path %>
-    </div>
-    <%= link_to "All Products", products_path %>
-    <% if current_user %>
-      <%= current_user.first_name %> <%= current_user.last_name %>
-      <%= link_to "Log Out", logout_path , :method => :delete %>
-    <% else %>
-      <ul>
-        <li><%= link_to "Log In", login_path %></li>
-        <li><%= link_to "Sign Up", new_user_path %></li>
+    <%= link_to "Rainforest", root_path, :class => 'logo' %>
+    <nav>
+      <ul class='nav'>
+        <li><%= link_to "All Products", products_path %></li>
+        <% if current_user %>
+          <li><%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user) %></li>
+          <li><%= link_to "Log Out", logout_path , :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Log In", login_path %></li>
+          <li><%= link_to "Sign Up", new_user_path %></li>
+        <% end %>
       </ul>
-    <% end %>
+    </nav>
   </header>
   <main>
-    <%= yield %>
+    <% if current_user %>
+      <section>
+        <p><%= current_user.first_name %> <%= current_user.last_name %></p>
+        <p>Favourites</p>
+        <div id='favourites' class="favourites" ondrop="drop(e)" ondragover="allowDrop(e)">
+          <% current_user.favourites.each do |favourite| %>
+            <%= favourite.product.name %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+    <article>
+      <%= yield %>
+    </article>
   </main>
 </body>
 </html>

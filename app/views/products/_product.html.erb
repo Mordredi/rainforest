@@ -1,5 +1,8 @@
-<div class="product-card">
+<div class="product-card" draggable="true" ondragstart="drag(e)">
   <%= link_to "#{product.name}", product_path(product) %>
-  <%= product.description %>
-  <%= product.formatted_price %>
+  <p><%= product.description %></p>
+  <p><%= product.formatted_price %></p>
+  <% if !product.favourites.where(user_id: current_user.id).present? %>
+    <%= link_to "Add to favourites", user_favourites_path(product, product_id: product.id), :method => 'POST' %>
+  <% end %>
 </div>

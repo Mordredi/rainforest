@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :favourites, :only => [:index, :create, :destroy]
+  end
 
   resources :products do
     resources :reviews, :only => [:show, :create, :destroy]

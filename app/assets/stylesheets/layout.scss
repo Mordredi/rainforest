@@ -1,0 +1,42 @@
+header, main, footer, .column, .nav, article, form, section, .search {
+  display: flex;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  height: 10vh;
+}
+
+main {
+  margin-top: 10vh; 
+  min-height: 83vh;
+}
+
+footer {
+  height: 7vh;
+}
+
+.column {
+  width: 33vw;
+  height: inherit;
+}
+
+article {
+  width: 100vw;
+  min-width: 75vw;
+  height: inherit;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logged-in {
+  width: 75vw;
+  margin-left: 25vw;
+}
+
+section {
+  width: 25vw;
+  flex-direction: column;
+  align-items: center;
+}

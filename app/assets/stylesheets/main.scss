@@ -1,6 +1,10 @@
-h1 {
-  font-size: 3em;
-  span {
-    color: green;
+main {
+  background: $background-color;
+  .column {
+    align-items: center;
+    justify-content: center;
+    a {
+      color: $primary-color;
+    }
   }
 }

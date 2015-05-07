@@ -10,9 +10,19 @@ class ProductsController < ApplicationController
       @products = Product.all
     end
 
-    if request.xhr?
-      render @products
+    @products = @products.page(params[:page])
+
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+         render @products
+        end
+      end
+      format.js
     end
+
+    @favourites = current_user.favourites
+
   end
 
   def show

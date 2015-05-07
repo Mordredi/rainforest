@@ -1,0 +1,22 @@
+header {
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100vw;
+  background: $primary-color;
+  color: #fff; 
+  a {
+    color: #fff;
+  };
+  .logo {
+    font-size: 2.5em;
+    margin-left: 2vw;
+  };
+  .nav {
+    margin-right: 2vw;
+    li {
+      font-size: 1.3em;
+      margin-left: 1em;
+    }
+  }
+}
